@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, FileText, Lock, AlertCircle, Heart, User } from "lucide-react";
+import { Shield, FileText, AlertCircle, Heart, User } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -37,32 +37,12 @@ const Home = () => {
             </div>
           </Card>
 
-          {/* Features */}
-          <div className="grid md:grid-cols-3 gap-6">
-            <ServiceCard title="Seguro" description="Suas informações são armazenadas localmente no seu dispositivo" icon={Lock} linkTo="/registrar" />
-            <ServiceCard title="Documentado" description="Gere um PDF da sua ocorrência para apresentar às autoridades" icon={FileText} linkTo="/registrar" />
-            <ServiceCard title="Protegido" description="Sistema desenvolvido para proteger sua privacidade" icon={Shield} linkTo="/registrar" />
-          </div>
+          {/* Features removed per request */}
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
-            <Button size="lg" className="bg-gradient-primary hover:opacity-90 shadow-lg text-white text-lg py-6" onClick={() => navigate("/registrar")}>
-              <Shield className="mr-2 h-5 w-5" />
-              Registrar Ocorrência
-            </Button>
-
-            <Button size="lg" className="bg-mulher-700 hover:bg-mulher-800 text-white text-lg py-6" onClick={() => navigate("/historico")}>
-              <FileText className="mr-2 h-5 w-5" />
-              Ver Histórico
-            </Button>
-          </div>
+          {/* CTAs removed per request */}
 
           {/* Info Text */}
           <div className="text-center text-sm text-muted-foreground pt-4">
-            <p>
-              O registro aqui feito não substitui o boletim de ocorrência oficial. 
-              Recomendamos que você procure uma delegacia para formalizar a denúncia.
-            </p>
           </div>
             {/* How we can help section */}
             <section className="container mx-auto px-4 py-12">
