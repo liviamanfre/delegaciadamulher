@@ -8,6 +8,11 @@ import RegistrarOcorrencia from "./pages/RegistrarOcorrencia";
 import Confirmacao from "./pages/Confirmacao";
 import Historico from "./pages/Historico";
 import NotFound from "./pages/NotFound";
+import Medidas from "./pages/Medidas";
+import Apoio from "./pages/Apoio";
+import Juridico from "./pages/Juridico";
+import DenunciaAnonima from "./pages/DenunciaAnonima";
+import Agendar from "./pages/Agendar";
 import EmergencyButton from "@/components/EmergencyButton";
 
 const queryClient = new QueryClient();
@@ -23,6 +28,11 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/registrar" element={<RegistrarOcorrencia />} />
+            <Route path="/medidas" element={<Medidas />} />
+            <Route path="/apoio" element={<Apoio />} />
+            <Route path="/agendar" element={<Agendar />} />
+            <Route path="/juridico" element={<Juridico />} />
+            <Route path="/anonima" element={<DenunciaAnonima />} />
             <Route path="/confirmacao/:id" element={<Confirmacao />} />
             <Route path="/historico" element={<Historico />} />
             <Route path="*" element={<NotFound />} />

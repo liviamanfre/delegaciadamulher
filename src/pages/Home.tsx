@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Shield, FileText, AlertCircle, Heart, User } from "lucide-react";
+import { Shield, FileText, AlertTriangle, Heart, User } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -21,21 +21,7 @@ const Home = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto space-y-8">
 
-          {/* Alert Card */}
-          <Card className="bg-destructive/10 border-destructive/30 p-6">
-            <div className="flex items-start gap-3">
-              <AlertCircle className="h-6 w-6 text-destructive flex-shrink-0 mt-1" />
-              <div>
-                <h3 className="font-semibold text-destructive mb-2">
-                  Em caso de emergência, ligue 190
-                </h3>
-                <p className="text-sm text-muted-foreground">
-                  Se você está em perigo imediato, não hesite em contatar a polícia militar 
-                  ou a Central de Atendimento à Mulher pelo telefone 180.
-                </p>
-              </div>
-            </div>
-          </Card>
+          {/* Emergency alert removed per request */}
 
           {/* Features removed per request */}
 
@@ -58,6 +44,33 @@ const Home = () => {
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 <ServiceCard title="Orientações Jurídicas" description="Receba orientações sobre seus direitos e como garantir a sua proteção legal." icon={Shield} linkTo="/juridico" />
                 <ServiceCard title="Denúncia Anônima" description="Se você tem informações sobre um caso, faça uma denúncia anônima para ajudar outras mulheres." icon={User} linkTo="/anonima" />
+              </div>
+              
+              {/* Emergency card + CTA banner */}
+              <div className="mt-8 space-y-8">
+                <Card className="p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3 bg-red-100 rounded-full">
+                      <AlertTriangle className="h-6 w-6 text-red-600" />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="font-semibold text-foreground mb-1">Você está em perigo?</h3>
+                      <p className="text-sm text-muted-foreground mb-4">Se você está em uma situação de emergência ou em perigo imediato, ligue imediatamente para o 180 (Disque Mulher) ou para os números de emergência da sua cidade.</p>
+                      <div className="flex items-center gap-3">
+                        <a href="tel:180"><Button className="bg-red-600 text-white">Disque 180</Button></a>
+                        <a href="tel:190"><Button variant="outline">Disque 190 (Polícia)</Button></a>
+                      </div>
+                    </div>
+                  </div>
+                </Card>
+
+                <div className="rounded-lg bg-mulher-50 p-8 text-center">
+                  <h3 className="text-2xl font-bold text-mulher-800 mb-2">Aqui você não está sozinha</h3>
+                  <p className="text-muted-foreground mb-6">Clique em uma das opções acima ou entre em contato conosco para receber o suporte necessário. Sua segurança é nossa prioridade.</p>
+                  <div className="flex items-center justify-center">
+                    <Button className="bg-mulher-700 text-white" onClick={() => navigate('/agendar')}>Entre em Contato</Button>
+                  </div>
+                </div>
               </div>
             </section>
         </div>
