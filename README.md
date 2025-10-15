@@ -101,7 +101,7 @@ Vitima --> (Solicitar Apoio)
 Delegacia --> (Responder Contato)
 Delegacia --> (Analisar Ocorrências)
 Delegacia --> (Gerenciar Consultas)
-
+```
 
 ### 4.3 Diagrama de Fluxo (Simplificado)
 
