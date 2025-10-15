@@ -89,19 +89,18 @@ classDiagram
 
 ```mermaid
   usecaseDiagram
-    actor Vitima
-    actor Delegacia
+  actor "Vítima" as Vitima
+  actor "Delegacia" as Delegacia
 
-    Vitima --> (Registrar Ocorrência)
-    Vitima --> (Agendar Consulta)
-    Vitima --> (Visualizar Histórico)
-    Vitima --> (Baixar PDF)
-    Vitima --> (Solicitar Apoio)
+  Vitima --> (Registrar Ocorrência)
+  Vitima --> (Agendar Consulta)
+  Vitima --> (Visualizar Histórico)
+  Vitima --> (Baixar PDF da Ocorrência)
+  Vitima --> (Solicitar Apoio)
 
-    Delegacia --> (Responder Contato)
-    Delegacia --> (Analisar Ocorrências)
-    Delegacia --> (Gerenciar Consultas)
-
+  Delegacia --> (Responder Contato)
+  Delegacia --> (Analisar Ocorrências)
+  Delegacia --> (Gerenciar Consultas)
 ```
 
 ### 4.3 Diagrama de Fluxo (Simplificado)
