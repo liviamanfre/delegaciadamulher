@@ -88,20 +88,20 @@ classDiagram
 ### 4.2 Diagrama de Casos de Uso
 
 ```mermaid
-  usecaseDiagram
-  actor "Vítima" as Vitima
-  actor "Delegacia" as Delegacia
+%% Diagrama de Casos de Uso
+actor "Vítima" as Vitima
+actor "Delegacia" as Delegacia
 
-  Vitima --> (Registrar Ocorrência)
-  Vitima --> (Agendar Consulta)
-  Vitima --> (Visualizar Histórico)
-  Vitima --> (Baixar PDF da Ocorrência)
-  Vitima --> (Solicitar Apoio)
+Vitima --> (Registrar Ocorrência)
+Vitima --> (Agendar Consulta)
+Vitima --> (Visualizar Histórico)
+Vitima --> (Baixar PDF da Ocorrência)
+Vitima --> (Solicitar Apoio)
 
-  Delegacia --> (Responder Contato)
-  Delegacia --> (Analisar Ocorrências)
-  Delegacia --> (Gerenciar Consultas)
-```
+Delegacia --> (Responder Contato)
+Delegacia --> (Analisar Ocorrências)
+Delegacia --> (Gerenciar Consultas)
+
 
 ### 4.3 Diagrama de Fluxo (Simplificado)
 
