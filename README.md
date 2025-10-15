@@ -88,7 +88,6 @@ classDiagram
 ### 4.2 Diagrama de Casos de Uso
 
 ```mermaid
-%% Diagrama de Casos de Uso
 actor "Vítima" as Vitima
 actor "Delegacia" as Delegacia
 
