@@ -88,18 +88,19 @@ classDiagram
 ### 4.2 Diagrama de Casos de Uso
 
 ```mermaid
-actor "Vítima" as Vitima
-actor "Delegacia" as Delegacia
+flowchart LR
+    Vitima["Vítima"]:::actor
+    Delegacia["Delegacia"]:::actor
 
-Vitima --> (Registrar Ocorrência)
-Vitima --> (Agendar Consulta)
-Vitima --> (Visualizar Histórico)
-Vitima --> (Baixar PDF da Ocorrência)
-Vitima --> (Solicitar Apoio)
+    Vitima --> RO["(Registrar Ocorrência)"]
+    Vitima --> AC["(Agendar Consulta)"]
+    Vitima --> VH["(Visualizar Histórico)"]
+    Vitima --> BP["(Baixar PDF da Ocorrência)"]
+    Vitima --> SA["(Solicitar Apoio)"]
 
-Delegacia --> (Responder Contato)
-Delegacia --> (Analisar Ocorrências)
-Delegacia --> (Gerenciar Consultas)
+    Delegacia --> RC["(Responder Contato)"]
+    Delegacia --> AO["(Analisar Ocorrências)"]
+    Delegacia --> GC["(Gerenciar Consultas)"]
 ```
 
 ### 4.3 Diagrama de Fluxo (Simplificado)
