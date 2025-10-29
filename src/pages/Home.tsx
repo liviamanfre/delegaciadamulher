@@ -21,12 +21,6 @@ const Home = () => {
         <div className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto space-y-8">
 
-          {/* Emergency alert removed per request */}
-
-          {/* Features removed per request */}
-
-          {/* CTAs removed per request */}
-
           {/* Info Text */}
           <div className="text-center text-sm text-muted-foreground pt-4">
           </div>
