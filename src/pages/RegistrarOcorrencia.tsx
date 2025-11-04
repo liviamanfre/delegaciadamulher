@@ -1,3 +1,4 @@
+// Importa os componentes e bibliotecas necessárias
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -20,6 +21,7 @@ import Footer from "@/components/Footer";
 import { gerarPDF, DenunciaData } from "@/utils/gerarPDF";
 import EmergencyButton from "@/components/EmergencyButton";
 
+// Define os tipos dos dados do formulário
 interface FormData {
   nome: string;
   cpf: string;
@@ -31,19 +33,20 @@ interface FormData {
 }
 
 const RegistrarOcorrencia = () => {
-  const navigate = useNavigate();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const navigate = useNavigate(); // Navegação entre páginas
+  const [isSubmitting, setIsSubmitting] = useState(false); // Controle de envio
   const { register, handleSubmit, setValue, watch, formState: { errors } } = useForm<FormData>();
 
-  const tipoViolencia = watch("tipoViolencia");
+  const tipoViolencia = watch("tipoViolencia"); // Observa mudanças no select
 
+  // Função executada ao enviar o formulário
   const onSubmit = (data: FormData) => {
     setIsSubmitting(true);
 
-    // Gerar ID único
+    // Gera um ID único para a denúncia
     const id = Date.now().toString();
     
-    // Criar objeto da denúncia
+    // Cria o objeto da denúncia
     const denuncia: DenunciaData = {
       id,
       nome: data.nome,
@@ -57,17 +60,18 @@ const RegistrarOcorrencia = () => {
       status: "Em análise",
     };
 
-    // Salvar no localStorage
+    // Salva no localStorage
     const denunciasExistentes = JSON.parse(localStorage.getItem("denuncias") || "[]");
     denunciasExistentes.push(denuncia);
     localStorage.setItem("denuncias", JSON.stringify(denunciasExistentes));
 
-    // Gerar PDF
+    // Gera o PDF da denúncia
     gerarPDF(denuncia);
 
-    // Feedback e redirecionamento
+    // Exibe mensagem de sucesso
     toast.success("Ocorrência registrada com sucesso!");
     
+    // Redireciona para página de confirmação após 1 segundo
     setTimeout(() => {
       navigate(`/confirmacao/${id}`);
       setIsSubmitting(false);
@@ -80,6 +84,7 @@ const RegistrarOcorrencia = () => {
       
       <main className="flex-1 container mx-auto px-4 py-8">
         <div className="max-w-3xl mx-auto">
+          {/* Botão para voltar à página inicial */}
           <Button
             variant="ghost"
             className="mb-6 text-primary hover:text-primary-dark"
@@ -89,8 +94,10 @@ const RegistrarOcorrencia = () => {
             Voltar
           </Button>
 
+          {/* Card principal do formulário */}
           <Card className="p-6 md:p-8 shadow-card">
             <div className="space-y-6">
+              {/* Cabeçalho do formulário */}
               <div className="text-center space-y-2">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground">
                   Registro de Ocorrência
@@ -100,13 +107,15 @@ const RegistrarOcorrencia = () => {
                 </p>
               </div>
 
+              {/* Formulário */}
               <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-                {/* Dados da Vítima */}
+                {/* Seção: Dados da Vítima */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground border-b border-primary/20 pb-2">
                     Dados da Vítima
                   </h3>
-                  
+
+                  {/* Campo: Nome */}
                   <div className="space-y-2">
                     <Label htmlFor="nome">Nome Completo *</Label>
                     <Input
@@ -115,11 +124,10 @@ const RegistrarOcorrencia = () => {
                       placeholder="Digite seu nome completo"
                       className={errors.nome ? "border-destructive" : ""}
                     />
-                    {errors.nome && (
-                      <p className="text-sm text-destructive">Campo obrigatório</p>
-                    )}
+                    {errors.nome && <p className="text-sm text-destructive">Campo obrigatório</p>}
                   </div>
 
+                  {/* Campo: CPF e Telefone */}
                   <div className="grid md:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="cpf">CPF *</Label>
@@ -129,9 +137,7 @@ const RegistrarOcorrencia = () => {
                         placeholder="000.000.000-00"
                         className={errors.cpf ? "border-destructive" : ""}
                       />
-                      {errors.cpf && (
-                        <p className="text-sm text-destructive">Campo obrigatório</p>
-                      )}
+                      {errors.cpf && <p className="text-sm text-destructive">Campo obrigatório</p>}
                     </div>
 
                     <div className="space-y-2">
@@ -142,12 +148,11 @@ const RegistrarOcorrencia = () => {
                         placeholder="(00) 00000-0000"
                         className={errors.telefone ? "border-destructive" : ""}
                       />
-                      {errors.telefone && (
-                        <p className="text-sm text-destructive">Campo obrigatório</p>
-                      )}
+                      {errors.telefone && <p className="text-sm text-destructive">Campo obrigatório</p>}
                     </div>
                   </div>
 
+                  {/* Campo: Endereço */}
                   <div className="space-y-2">
                     <Label htmlFor="endereco">Endereço *</Label>
                     <Input
@@ -156,18 +161,17 @@ const RegistrarOcorrencia = () => {
                       placeholder="Rua, número, bairro, cidade"
                       className={errors.endereco ? "border-destructive" : ""}
                     />
-                    {errors.endereco && (
-                      <p className="text-sm text-destructive">Campo obrigatório</p>
-                    )}
+                    {errors.endereco && <p className="text-sm text-destructive">Campo obrigatório</p>}
                   </div>
                 </div>
 
-                {/* Detalhes da Ocorrência */}
+                {/* Seção: Detalhes da Ocorrência */}
                 <div className="space-y-4">
                   <h3 className="text-lg font-semibold text-foreground border-b border-primary/20 pb-2">
                     Detalhes da Ocorrência
                   </h3>
 
+                  {/* Tipo de Violência */}
                   <div className="space-y-2">
                     <Label htmlFor="tipoViolencia">Tipo de Violência *</Label>
                     <Select
@@ -187,6 +191,7 @@ const RegistrarOcorrencia = () => {
                     </Select>
                   </div>
 
+                  {/* Data do ocorrido */}
                   <div className="space-y-2">
                     <Label htmlFor="dataOcorrido">Data e Hora do Ocorrido *</Label>
                     <Input
@@ -195,26 +200,23 @@ const RegistrarOcorrencia = () => {
                       {...register("dataOcorrido", { required: true })}
                       className={errors.dataOcorrido ? "border-destructive" : ""}
                     />
-                    {errors.dataOcorrido && (
-                      <p className="text-sm text-destructive">Campo obrigatório</p>
-                    )}
+                    {errors.dataOcorrido && <p className="text-sm text-destructive">Campo obrigatório</p>}
                   </div>
 
+                  {/* Descrição */}
                   <div className="space-y-2">
                     <Label htmlFor="descricao">Descrição Detalhada *</Label>
                     <Textarea
                       id="descricao"
                       {...register("descricao", { required: true })}
-                      placeholder="Descreva com detalhes o que aconteceu. Quanto mais informações você fornecer, melhor será o registro."
+                      placeholder="Descreva o ocorrido com o máximo de detalhes possível"
                       className={`min-h-[150px] ${errors.descricao ? "border-destructive" : ""}`}
                     />
-                    {errors.descricao && (
-                      <p className="text-sm text-destructive">Campo obrigatório</p>
-                    )}
+                    {errors.descricao && <p className="text-sm text-destructive">Campo obrigatório</p>}
                   </div>
                 </div>
 
-                {/* Botões */}
+                {/* Botões de ação */}
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
                   <Button
                     type="button"
@@ -239,7 +241,7 @@ const RegistrarOcorrencia = () => {
         </div>
       </main>
 
-  <Footer />
+      <Footer />
     </div>
   );
 };
