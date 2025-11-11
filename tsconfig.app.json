@@ -1,30 +1,53 @@
 {
   "compilerOptions": {
+    // Define a versão alvo do JavaScript que o TypeScript vai compilar
     "target": "ES2020",
+
+    // Usa a nova sintaxe de definição de campos de classe (ECMAScript padrão)
     "useDefineForClassFields": true,
+
+    // Bibliotecas que o compilador TypeScript deve incluir (ES2020 + DOM APIs)
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
+
+    // Módulos gerados seguirão o padrão ESNext (para Vite, por exemplo)
     "module": "ESNext",
+
+    // Ignora checagens de tipos em bibliotecas externas (melhora performance)
     "skipLibCheck": true,
 
-    /* Bundler mode */
+    /* Modo de empacotamento (Vite, esbuild, etc.) */
+    // Resolve imports de forma moderna (baseado em bundlers)
     "moduleResolution": "bundler",
+
+    // Permite importar arquivos com extensão .ts ou .tsx explicitamente
     "allowImportingTsExtensions": true,
+
+    // Garante que cada arquivo seja tratado isoladamente
     "isolatedModules": true,
+
+    // Força detecção explícita de módulos mesmo sem "import/export"
     "moduleDetection": "force",
+
+    // Não gera arquivos compilados (apenas checa tipos)
     "noEmit": true,
+
+    // Usa o novo transformador JSX para React 17+
     "jsx": "react-jsx",
 
-    /* Linting */
-    "strict": false,
-    "noUnusedLocals": false,
-    "noUnusedParameters": false,
-    "noImplicitAny": false,
-    "noFallthroughCasesInSwitch": false,
+    /* Configurações de checagem e linting */
+    "strict": false, // Desativa o modo estrito de tipos
+    "noUnusedLocals": false, // Permite variáveis locais não utilizadas
+    "noUnusedParameters": false, // Permite parâmetros não usados
+    "noImplicitAny": false, // Permite variáveis com tipo "any" implícito
+    "noFallthroughCasesInSwitch": false, // Permite casos de switch sem "break"
 
-    "baseUrl": ".",
+    /* Caminhos e aliases de importação */
+    "baseUrl": ".", // Define o diretório base do projeto
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"] // Cria um alias para importar arquivos a partir de "src"
     }
   },
+
+  // Define os diretórios incluídos na compilação TypeScript
   "include": ["src"]
 }

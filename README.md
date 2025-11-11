@@ -12,7 +12,7 @@ Sistema web para registrar e acompanhar ocorrências relacionadas à violência 
 4. Diagramas (Mermaid)  
    - Diagrama de Classes  
    - Diagrama de Casos de Uso  
-   - Diagrama de Fluxo / sequência simplificada  
+   - Diagrama de Fluxo 
 5. Instalação e Execução  
 6. Considerações futuras / Melhorias
 7. Autores 
@@ -27,8 +27,8 @@ O sistema permite que mulheres (ou cidadãos) registrem ocorrências (de modo an
 
 ## 2. Tecnologias utilizadas
 
-- **Frontend**: TypeScript, React / framework (ou biblioteca que você usou)  
-- **Estilização**: Tailwind CSS (ou CSS puro, conforme repositório)
+- **Frontend**: TypeScript, React  
+- **Estilização**: Tailwind CSS 
 - **Bibliotecas auxiliares**: geração de PDF, autenticação JWT, roteamento, etc.
 
 ---
