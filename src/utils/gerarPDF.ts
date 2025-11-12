@@ -26,11 +26,28 @@ export const gerarPDF = (denuncia: DenunciaData) => {
   doc.setFillColor(158, 85, 211); // Cor de fundo roxo
   doc.rect(0, 0, pageWidth, 45, "F"); // Retângulo de fundo
 
-  // Simula um ícone de escudo
+  // Desenha um escudo roxo com contorno branco
+  const shieldX = 25;
+  const shieldY = 22;
+  
+  // Contorno branco do escudo
   doc.setFillColor(255, 255, 255);
-  doc.circle(25, 22, 8, "F");
+  doc.setDrawColor(255, 255, 255);
+  doc.setLineWidth(0);
+  
+  // Cria um escudo usando retângulos e arcos
+  // Topo arredondado
+  doc.roundedRect(shieldX - 3.5, shieldY - 5, 7, 5.5, 1.5, 1.5, "F");
+  
+  // Base do escudo em V
+  doc.triangle(shieldX - 3, shieldY + 0.5, shieldX + 3, shieldY + 0.5, shieldX, shieldY + 3.5, "F");
+  
+  // Preenchimento roxo interno (escudo roxo)
   doc.setFillColor(158, 85, 211);
-  doc.circle(25, 22, 6, "F");
+  doc.roundedRect(shieldX - 3.2, shieldY - 4.7, 6.4, 5.1, 1.4, 1.4, "F");
+  
+  // Base do escudo roxo em V
+  doc.triangle(shieldX - 2.7, shieldY + 0.3, shieldX + 2.7, shieldY + 0.3, shieldX, shieldY + 3.3, "F");
 
   // Título principal
   doc.setTextColor(255, 255, 255);

@@ -12,11 +12,41 @@ const Agendar = () => {
   const navigate = useNavigate(); // Hook para navegar entre páginas
   const location = useLocation(); // Hook para acessar informações da rota atual
 
+  // Obter o tipo de agendamento da URL (juridico, psicologico ou contato)
+  const searchParams = new URLSearchParams(location.search);
+  const type = searchParams.get("type") || "contato";
+
   // Estados para armazenar os dados do formulário
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+
+  // Definir título, descrição e mensagem com base no tipo
+  const getPageContent = () => {
+    switch (type) {
+      case "juridico":
+        return {
+          title: "Agendar Consulta Jurídica",
+          description: "Preencha o formulário abaixo para agendar sua consulta jurídica gratuita com nossa equipe de profissionais especializados.",
+          toastMessage: "Em breve entraremos em contato para agendar a Consulta Jurídica, obrigado!",
+        };
+      case "psicologico":
+        return {
+          title: "Agendar Atendimento Psicológico",
+          description: "Preencha o formulário abaixo para agendar seu atendimento psicológico com nossos profissionais qualificados.",
+          toastMessage: "Em breve entraremos em contato para agendar o atendimento Psicológico, obrigado!",
+        };
+      default:
+        return {
+          title: "Entre em Contato",
+          description: "Estamos aqui para ajudar. Preencha o formulário abaixo para entrar em contato conosco ou utilize um dos canais de atendimento disponíveis.",
+          toastMessage: "Entraremos em contato em breve, obrigado!",
+        };
+    }
+  };
+
+  const content = getPageContent();
 
   // Função chamada quando o formulário é enviado
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,6 +59,7 @@ const Agendar = () => {
       phone,
       email,
       message,
+      type, // Adiciona o tipo de agendamento
       createdAt: new Date().toISOString(), // Data/hora do envio
     };
 
@@ -41,8 +72,8 @@ const Agendar = () => {
     // Salva novamente no localStorage
     localStorage.setItem("agendamentos", JSON.stringify(existing));
 
-    // Exibe mensagem de confirmação (toast)
-    toast({ title: "Entraremos em contato em breve." });
+    // Exibe mensagem de confirmação (toast) com a mensagem apropriada
+    toast({ title: content.toastMessage });
 
     // Limpa os campos do formulário
     setName("");
@@ -59,17 +90,16 @@ const Agendar = () => {
       {/* Conteúdo principal */}
       <main className="flex-1 container mx-auto px-6 py-12">
         {/* Título e subtítulo da página */}
-        <h1 className="text-4xl font-extrabold text-mulher-800 mb-4">Entre em Contato</h1>
+        <h1 className="text-4xl font-extrabold text-mulher-800 mb-4">{content.title}</h1>
         <p className="text-muted-foreground max-w-3xl mb-6">
-          Estamos aqui para ajudar. Preencha o formulário abaixo para entrar em contato conosco
-          ou utilize um dos canais de atendimento disponíveis.
+          {content.description}
         </p>
 
         {/* Estrutura principal: formulário + informações de contato */}
         <div className="grid md:grid-cols-3 gap-6">
           {/* Coluna esquerda: formulário de contato */}
           <Card className="p-6 md:col-span-2">
-            <h3 className="text-xl font-semibold text-mulher-800 mb-4">Formulário de Contato</h3>
+            <h3 className="text-xl font-semibold text-mulher-800 mb-4">Formulário de {type === "juridico" ? "Consulta Jurídica" : type === "psicologico" ? "Atendimento Psicológico" : "Contato"}</h3>
             
             <form onSubmit={handleSubmit}>
               {/* Campos de nome e telefone */}
